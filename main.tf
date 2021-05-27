@@ -121,8 +121,9 @@ resource "aws_dynamodb_table" "default" {
 }
 
 module "dynamodb_autoscaler" {
-  source  = "cloudposse/dynamodb-autoscaler/aws"
-  version = "0.13.0"
+  source = "github.com/alexjurkiewicz/terraform-aws-dynamodb-autoscaler?ref=1fa562c0ae523c2b952f12b92ad39eae3ba5a45e"
+  # source  = "cloudposse/dynamodb-autoscaler/aws"
+  # version = "0.13.0"
   enabled = local.enabled && var.enable_autoscaler && var.billing_mode == "PROVISIONED"
 
   attributes                   = concat(module.this.attributes, var.autoscaler_attributes)
